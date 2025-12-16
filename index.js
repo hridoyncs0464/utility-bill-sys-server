@@ -3,18 +3,20 @@ const express = require("express");
 const app = express();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
-require('dotenv').config();
+require("dotenv").config();
 
 const port = process.env.PORT || 3100;
 console.log(process.env);
-//middleWare 
+//middleWare
 
-app.use(cors()); 
+app.use(cors());
 
 app.use(express.json());
 
-const uri =
-`mongodb+srv://${process.env.DB_US}:${process.env.DB_PASS}@cluster0.vdc0dd0.mongodb.net/?appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.DB_US}:${process.env.DB_PASS}@cluster0.vdc0dd0.mongodb.net/?appName=Cluster0`;
+
+
+
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -126,6 +128,8 @@ async function run() {
       res.send(result);
     });
 
+
+
     //delete my pay bills
     app.delete("/my-pay-bills/:id", async (req, res) => {
       const id = req.params.id;
@@ -159,6 +163,9 @@ async function run() {
       res.send(result);
     });
 
+
+
+
     //all bills  Api-5
     app.get("/all-bills", async (req, res) => {
       const cursor = utilitybillCollection
@@ -177,13 +184,17 @@ async function run() {
       const result = await utilitybillCollection.findOne(query);
       res.send(result);
     });
-
+                         
     //API for insert-3
     app.post("/bills", async (req, res) => {
       const newBills = req.body;
       const result = await utilitybillCollection.insertOne(newBills);
       res.send(result);
     });
+                   
+
+
+
 
     //API for Update or patch-4
     app.patch("/bills/:id", async (req, res) => {
