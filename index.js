@@ -178,6 +178,8 @@ async function run() {
                          
                                                     
     //get or to find a specific -2
+                       
+    //get or to find a specific -2
     app.get("/bills/:id", async (req, res) => {
       const id = req.params.id;
       console.log(id);
@@ -222,10 +224,10 @@ async function run() {
       res.send(result);
     });
 
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your Utility bill managment system . Hridoy successfully connected to MongoDB!"
-    );
+    // await client.db("admin").command({ ping: 1 });
+    // console.log(
+    //   "Pinged your Utility bill managment system . Hridoy successfully connected to MongoDB!"
+    // );
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
